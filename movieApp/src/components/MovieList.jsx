@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, Button } from "@material-ui/core";
 import { createTheme } from "@mui/material/styles";
-
-// import MovieDetailPage from "./MovieDetail";
-
 import Loading from "./Loading";
-const MovieList = ({ movies, loading }) => {
+
+const MovieList = ({ movies, loading, onMovieSelect }) => {
+  // const [showMovieDetail, setShowMovieDetail] = useState(false);
+  // const [selectedMovieId, setSelectedMovieId] = useState(null);
+
+  // const handleShow = (imdbID) => {
+  //   setSelectedMovieId(imdbID);
+  //   setShowMovieDetail(!showMovieDetail);
+  // };
+
   return (
     <>
       {loading ? (
@@ -49,7 +55,7 @@ const MovieList = ({ movies, loading }) => {
                   color="text.secondary"
                   style={{ marginBottom: "4px", fontSize: "1rem" }}
                 >
-                  IMDb ID: {movie.imdbID}
+                  {/* IMDb ID: {movie.imdbID} */}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -62,6 +68,7 @@ const MovieList = ({ movies, loading }) => {
                   variant="contained"
                   color="primary"
                   style={{ marginTop: "8px" }}
+                  onClick={() => onMovieSelect(movie.imdbID)}
                 >
                   Show Details
                 </Button>
@@ -70,6 +77,9 @@ const MovieList = ({ movies, loading }) => {
           );
         })
       )}
+      {/* {showMovieDetail && selectedMovieId && (
+        <MovieDetail selectedMovieId={selectedMovieId} /> // Pass the selected IMDb ID to MovieDetail
+      )} */}
     </>
   );
 };

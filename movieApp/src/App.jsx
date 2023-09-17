@@ -4,6 +4,7 @@ import "./App.css";
 import MovieList from "./components/MovieList";
 import { Container } from "@material-ui/core";
 import { createTheme } from "@mui/material/styles";
+import MovieDetail from "../src/components/MovieDetail";
 
 import axios from "axios";
 import Search from "./components/Search";
@@ -12,7 +13,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [loading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
-
+  const [selectedMovie, onMovieSelect] = useState();
   useEffect(() => {
     const fetchData = async () => {
       if (search.trim() === "") {
@@ -63,7 +64,13 @@ function App() {
           justifyContent: "space-between",
         }}
       >
-        <MovieList movies={movies} loading={loading} setMovies={setMovies} />
+        {selectedMovie && <MovieDetail selectedMovie={selectedMovie} />}
+        <MovieList
+          movies={movies}
+          loading={loading}
+          setMovies={setMovies}
+          onMovieSelect={onMovieSelect}
+        />
       </div>
     </Container>
   );
