@@ -57,6 +57,8 @@ function App() {
     // </div>
     <Container width="100%">
       <Search setMovies={setMovies} search={search} setSearch={setSearch} />
+      {selectedMovie && <MovieDetail selectedMovie={selectedMovie} />}
+
       <div
         style={{
           display: "flex",
@@ -64,7 +66,6 @@ function App() {
           justifyContent: "space-between",
         }}
       >
-        {selectedMovie && <MovieDetail selectedMovie={selectedMovie} />}
         <MovieList
           movies={movies}
           loading={loading}

@@ -3,26 +3,26 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import axios, { Axios } from "axios"; // Import Axios
+import axios from "axios"; // Import Axios
 import Loading from "./Loading";
 
 const cardStyle = {
   display: "flex",
-  maxWidth: 400,
-  margin: "1rem",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-  borderRadius: "8px",
+  maxWidth: 1200, // Increase the maximum width
+  margin: "1rem auto", // Center the card horizontally
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Add a subtle shadow
+  borderRadius: "12px",
   overflow: "hidden",
 };
 
 const mediaStyle = {
-  width: 150,
+  width: 250, // Increase the width of the movie poster
   height: "auto",
 };
 
 const contentStyle = {
   flex: "1 0 auto",
-  padding: "1rem",
+  padding: "1.5rem", // Add more padding
 };
 
 const MovieDetail = ({ selectedMovie }) => {
@@ -40,28 +40,29 @@ const MovieDetail = ({ selectedMovie }) => {
     };
     fetchData();
   }, [selectedMovie]);
+
   return (
     <Card style={cardStyle}>
       {movie ? (
         <>
           <CardMedia component="img" src={movie.Poster} style={mediaStyle} />
           <CardContent style={contentStyle}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h5" gutterBottom>
               {movie.Title}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body1" color="textSecondary">
               Release Year: {movie.Year}
             </Typography>
-            <Typography variant="body2" paragraph>
+            <Typography variant="body1" paragraph>
               {movie.Plot}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body1" color="textSecondary">
               Genre: {movie.Genre}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body1" color="textSecondary">
               Director: {movie.Director}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body1" color="textSecondary">
               Rating: {movie.imdbRating}
             </Typography>
             {/* Add more details as needed */}
@@ -71,7 +72,7 @@ const MovieDetail = ({ selectedMovie }) => {
         <Loading />
       )}
     </Card>
-  ); // Render null if showMovieDetail is false
+  );
 };
 
 export default MovieDetail;
